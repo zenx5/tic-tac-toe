@@ -1,0 +1,22 @@
+<div class="flex flex-col gap-2 p-2 mx-auto w-fit">
+    <div class="flex flex-row gap-3">
+        <div (click)="setTag( 0 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer">{{ renderTag( positions[0] ) }}</div>
+        <div (click)="setTag( 1 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer">{{ renderTag( positions[1] ) }}</div>
+        <div (click)="setTag( 2 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer">{{ renderTag( positions[2] ) }}</div>
+    </div>
+    <div class="flex flex-row gap-3">
+        <div (click)="setTag( 3 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer" >{{ renderTag( positions[3] ) }}</div>
+        <div (click)="setTag( 4 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer" >{{ renderTag( positions[4] ) }}</div>
+        <div (click)="setTag( 5 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer" >{{ renderTag( positions[5] ) }}</div>
+    </div>
+    <div class="flex flex-row gap-3">
+        <div (click)="setTag( 6 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer">{{ renderTag( positions[6] ) }}</div>
+        <div (click)="setTag( 7 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer">{{ renderTag( positions[7] ) }}</div>
+        <div (click)="setTag( 8 )"  class="shadow-purple-950 shadow-md hover:shadow text-[4rem] flex justify-center items-center w-[150px] h-[150px] border border-purple-700 p-2 hover:bg-purple-950 text-purple-700 hover:text-black font-bold cursor-pointer">{{ renderTag( positions[8] ) }}</div>
+    </div>
+    <div *ngIf="winner!=0" class="absolute w-[450px] h-[450px] m-3 flex justify-center items-center text-[2rem] bg-[#050505dd] text-purple-700 shadow-lg rounded-lg cursor-pointer" (click)="reset()">
+        <span *ngIf="winner==1">Ganó Jugador X</span>
+        <span *ngIf="winner==2">Ganó Jugador O</span>
+        <span *ngIf="winner==3">No hay ganador</span>
+    </div>
+</div>

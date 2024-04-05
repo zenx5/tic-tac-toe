@@ -16,7 +16,9 @@ export const winsArray = [
 ]
 
 export const FICHA_NONE = 0;
-
 export const FICHA_X = 1;
-
 export const FICHA_O = 2;
+export const FICHA_DRAW = 3;
+export const TAG_X = "X";
+export const TAG_O = "O";
+export const TAG_NONE = "";

@@ -1,18 +1,5 @@
 import { Component } from '@angular/core';
-
-const winsArray = [
-  [0,1,2],
-  [0,4,8],
-  [0,3,6],
-  [1,4,7],
-  [2,4,6],
-  [2,5,8],
-  [3,4,5],
-  [6,4,2],
-  [6,7,8]
-]
-const USER_X = 1
-const USER_O = 2
+import { winsArray, USER_X, USER_O, USER_NONE, DRAW, TAG_X, TAG_O, TAG_NONE } from '../../tools/constants'
 
 @Component({
   selector: 'app-board',
@@ -21,47 +8,54 @@ const USER_O = 2
 })
 export class BoardComponent {
 
-  winner:number = 0;
+  winner:number = USER_NONE;
   user:number = USER_X
-  positions:Array<number> = Array(9).fill(0)
+  positions:Array<number> = Array(9).fill(USER_NONE)
+
+  handlerSetTag( index:number ){
+    const result = this.setTag( index )
+    this.check(result)
+  }
 
   setTag( index:number ){
-    if( this.positions[ index]==0 ) {
+    if( this.positions[ index]==USER_NONE && this.winner==USER_NONE ) {
       this.positions[ index ] = this.user
-      this.check()
-      if( this.winner==0 ) {
-        if( this.user === USER_X ) this.user = USER_O
-        else this.user = USER_X
-      }
-      if( !this.positions.includes( 0 ) ) {
-        this.winner = 3
-      }
+      this.user = this.user===USER_X ? USER_O : USER_X
     }
+    return this.positions
   }
 
   renderTag( value:number ): string {
     switch( value ) {
-      case USER_X: return "X";
-      case USER_O: return "O";
-      default: return "";
+      case USER_X: return TAG_X;
+      case USER_O: return TAG_O;
+      default: return TAG_NONE;
     }
   }
 
-  check() {
-    winsArray.forEach( line => {
-      const [p1, p2, p3] = line
-      const row = this.positions.filter( (tag, index) => (index==p1 || index==p2 || index==p3) )
-      if( !row.map( tag => tag===this.user ).includes(false) ) {
-        this.winner = this.user;
-        return
-      }
+  check(newPositions:Array<number>) {
+    const procesedArray = winsArray.map( ([position1, position2, position3]) => {
+        if(
+            newPositions[position1]===USER_X &&
+            newPositions[position2]===USER_X &&
+            newPositions[position3]===USER_X
+        ) return USER_X
+        else if (
+            newPositions[position1]===USER_O &&
+            newPositions[position2]===USER_O &&
+            newPositions[position3]===USER_O
+        ) return USER_O
+        else return USER_NONE
     })
+    if( procesedArray.includes(USER_X) ) this.winner = USER_X
+    else if( procesedArray.includes(USER_O) ) this.winner = USER_O
+    else if( !newPositions.includes( USER_NONE ) ) this.winner = DRAW
   }
 
   reset(){
-    this.winner = 0
+    this.winner = USER_NONE
     this.user = USER_X
-    this.positions = Array(9).fill(0)
+    this.positions = Array(9).fill(USER_NONE)
   }
 
 }

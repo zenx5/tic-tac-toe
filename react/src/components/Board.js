@@ -37,9 +37,9 @@ export default function Board() {
     }
 
     const reset = () => {
-        setWinner( prev => 0 )
+        setWinner( prev => FICHA_NONE )
         setUser( prev => FICHA_X )
-        setPositions( Array(9).fill(0) )
+        setPositions( Array(9).fill(FICHA_NONE) )
     }
 
     const handlerSetTag = ( tag ) => {
